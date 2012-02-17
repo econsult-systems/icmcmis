@@ -1,0 +1,40 @@
+<?php
+$this->title = "Roles";
+$this->headTitle($this->title);
+?>
+
+<p><a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'index'));?>">Home</a> 
+| <a href="<?php echo $this->url(array('controller'=>'patient', 'action'=>'index'));?>">Patients</a>
+| <a href="<?php echo $this->url(array('controller'=>'user', 'action'=>'index'));?>">Users</a>
+| <a href="<?php echo $this->url(array('controller'=>'role', 'action'=>'index'));?>">User Roles</a>
+| <a href="<?php echo $this->url(array('controller'=>'role', 
+    'action'=>'allprivileges'));?>">Privileges</a>
+</p>
+
+<p><a href="<?php echo $this->url(array('controller'=>'role',
+'action'=>'add'));?>">Add Role</a></p>
+
+<table>
+    <tr>
+        
+        <th>Role</th>
+        <th>Description</th>
+        <th>&nbsp;</th>
+    </tr>
+
+<?php foreach($this->roles as $role) : ?>
+    
+    <tr>
+        <td><?php echo $this->escape($role->role);?></td>
+        <td><?php echo $this->escape($role->description);?></td>
+        <td> </td>
+        <td>
+            <a href="<?php echo $this->url(array('controller'=>'role',
+                'action'=>'edit', 'role_id'=>$role->role_id));?>">Edit</a>
+            
+            <a href="<?php echo $this->url(array('controller'=>'role',
+                'action'=>'delete', 'role_id'=>$role->role_id));?>">Delete</a>
+        </td>
+    </tr>
+            <?php endforeach; ?>
+</table>

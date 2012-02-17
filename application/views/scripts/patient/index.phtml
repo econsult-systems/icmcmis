@@ -1,0 +1,60 @@
+<?php
+$this->title = "Patients";
+$this->headTitle($this->title);
+?>
+
+<p><a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'index'));?>">Home</a> 
+| <a href="<?php echo $this->url(array('controller'=>'patient', 'action'=>'index'));?>">Patients</a>
+| <a href="<?php echo $this->url(array('controller'=>'user', 'action'=>'index'));?>">Users</a>
+| <a href="<?php echo $this->url(array('controller'=>'role', 'action'=>'index'));?>">User Roles</a>
+| <a href="<?php echo $this->url(array('controller'=>'role', 
+    'action'=>'allprivileges'));?>">Privileges</a>
+</p>
+
+<p><a href="<?php echo $this->url(array('controller'=>'index',
+'action'=>'add', 'request'=>'patient'));?>">Add New Patient</a></p>
+
+<table>
+    <tr>
+        <th>Patient ID</th>
+        <th>Person ID</th>
+        <th>First Name</th>
+        <th>Surname</th>
+        <th>Other Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>&nbsp;</th>
+        
+    </tr>
+
+<?php foreach($this->patients as $patient) : ?>
+    
+    <tr>
+        <td><?php echo $this->escape($patient['patient_id']);?></td>
+        <td><?php echo $this->escape($patient['person_id']);?></td>
+        <td><?php echo $this->escape($patient['first_name']);?></td>
+        <td><?php echo $this->escape($patient['surname']);?></td>
+        <td><?php echo $this->escape($patient['given_name']);?></td>
+        <td><?php echo $this->escape($patient['birthdate_estimate']);?></td>
+        <td><?php echo strtoupper($this->escape($patient['gender']));?></td>
+        <td> </td>
+        <td>
+            
+            
+            <a href="<?php echo $this->url(array('controller'=>'encounter',
+                'action'=>'add', 'patient_id'=>$patient['patient_id']));?>">Add Encounter</a>
+            
+            <a href="<?php echo $this->url(array('controller'=>'encounter',
+                'action'=>'index', 'patient_id'=>$patient['patient_id']));?>">Encounters</a>
+      
+            
+            <a href="<?php echo $this->url(array('controller'=>'patient',
+                'action'=>'edit', 'patient_id'=>$patient['patient_id']));?>">Edit</a>
+            
+            <a href="<?php echo $this->url(array('controller'=>'patient',
+                'action'=>'delete', 'patient_id'=>$patient['patient_id']));?>">Delete</a>
+            
+        </td>
+    </tr>
+            <?php endforeach; ?>
+</table>

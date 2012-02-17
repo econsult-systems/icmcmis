@@ -1,0 +1,14 @@
+<?php
+$this->title = "Delete User Privilege";
+$this->headTitle($this->title);
+?>
+
+<p>Are you sure that you want to delete this privilege (<?php echo $this->privilege['privilege']; ?>)?</p>
+
+<form action="<?php echo $this->url(array('action'=>'deleteprivilege')); ?>" method="post">
+    <div>
+        <input type="hidden" name="privilege_id" value="<?php echo $this->privilege['privilege_id']; ?>" />
+        <input type="submit" name="del" value="Yes" />
+        <input type="submit" name="del" value="No" />
+    </div>
+</form>

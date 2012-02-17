@@ -1,0 +1,54 @@
+<?php
+$this->title = "Users";
+$this->headTitle($this->title);
+?>
+
+<p>
+  <a href="<?php echo $this->url(array('controller'=>'index'));?>">Home</a> 
+| <a href="<?php echo $this->url(array('controller'=>'patient'));?>">Patients</a>
+| <a href="<?php echo $this->url(array('controller'=>'role'));?>">User Roles</a>
+| <a href="<?php echo $this->url(array('controller'=>'role', 
+    'action'=>'allprivileges'));?>">Privileges</a>
+</p>
+
+<p><a href="<?php echo $this->url(array('controller'=>'user',
+'action'=>'add'));?>">Add User</a></p>
+
+<table>
+    <tr>
+        <th>Person ID</th>
+        <th>Username</th>
+        <th>First Name</th>
+        <th>Surname</th>
+        <th>Other Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Creator ID</th>
+        <th>&nbsp;</th>
+    </tr>
+
+<?php foreach($this->users as $user) : ?>
+    
+    <tr>
+        <td><?php echo $this->escape($user['person_id']);?></td>
+        <td><?php echo $this->escape($user['username']);?></td>
+        <td><?php echo $this->escape($user['first_name']);?></td>
+        <td><?php echo $this->escape($user['surname']);?></td>
+        <td><?php echo $this->escape($user['given_name']);?></td>
+        <td><?php echo $this->escape($user['birthdate_estimate']);?></td>
+        <td><?php echo strtoupper($this->escape($user['gender']));?></td>
+        <td><?php echo $this->escape($user['creator_id']);?></td>
+        <td> </td>
+        <td>
+            
+            <a href="<?php echo $this->url(array('controller'=>'user',
+                'action'=>'edit', 'user_id'=>$user['user_id'], 
+                'person_id'=>$user['person_id']));?>">Edit</a>
+            
+            <a href="<?php echo $this->url(array('controller'=>'user',
+                'action'=>'delete', 'user_id'=>$user['user_id']));?>">Delete</a>
+            
+        </td>
+    </tr>
+            <?php endforeach; ?>
+</table>

@@ -1,0 +1,40 @@
+<?php
+$this->title = "Privileges";
+$this->headTitle($this->title);
+?>
+
+<p><a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'index'));?>">Home</a> 
+| <a href="<?php echo $this->url(array('controller'=>'patient', 'action'=>'index'));?>">Patients</a>
+| <a href="<?php echo $this->url(array('controller'=>'user', 'action'=>'index'));?>">Users</a>
+| <a href="<?php echo $this->url(array('controller'=>'role', 'action'=>'index'));?>">User Roles</a>
+| <a href="<?php echo $this->url(array('controller'=>'role', 
+    'action'=>'allprivileges'));?>">Privileges</a>
+</p>
+
+<p><a href="<?php echo $this->url(array('controller'=>'role',
+'action'=>'addprivilege'));?>">Add Privilege</a></p>
+
+<table>
+    <tr>
+        
+        <th>Privilege</th>
+        <th>Description</th>
+        <th>&nbsp;</th>
+    </tr>
+
+<?php foreach($this->privileges as $privilege) : ?>
+    
+    <tr>
+        <td><?php echo $this->escape($privilege->privilege);?></td>
+        <td><?php echo $this->escape($privilege->description);?></td>
+        <td> </td>
+        <td>
+            <a href="<?php echo $this->url(array('controller'=>'role',
+                'action'=>'editprivilege', 'privilege_id'=>$privilege->privilege_id));?>">Edit</a>
+            
+            <a href="<?php echo $this->url(array('controller'=>'role',
+                'action'=>'deleteprivilege', 'privilege_id'=>$privilege->privilege_id));?>">Delete</a>
+        </td>
+    </tr>
+            <?php endforeach; ?>
+</table>

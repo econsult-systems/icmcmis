@@ -1,0 +1,60 @@
+<?php
+$this->title = "Persons";
+$this->headTitle($this->title);
+?>
+
+<p><a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'index'));?>">Home</a> 
+| <a href="<?php echo $this->url(array('controller'=>'patient', 'action'=>'index'));?>">Patients</a>
+| <a href="<?php echo $this->url(array('controller'=>'user', 'action'=>'index'));?>">Users</a>
+| <a href="<?php echo $this->url(array('controller'=>'role', 'action'=>'index'));?>">User Roles</a>
+| <a href="<?php echo $this->url(array('controller'=>'role', 
+    'action'=>'allprivileges'));?>">Privileges</a>
+</p>
+
+<p><a href="<?php echo $this->url(array('controller'=>'index',
+'action'=>'add'));?>">Add New Record</a></p>
+
+<table>
+    <tr>
+        <th>First Name</th>
+        <th>Surname</th>
+        <th>Other Name</th>
+        <th>Gender</th>
+        <th>Birth-date</th>
+        <th>Age Estimate</th>
+        <th>Living</th>
+        <th>Date Created</th>
+        <th>Created By</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+    </tr>
+
+<?php foreach($this->persons as $person) : ?>
+    
+    <tr>
+        <td><?php echo $this->escape($person->first_name);?></td>
+        <td><?php echo $this->escape($person->surname);?></td>
+        <td><?php echo $this->escape($person->given_name);?></td>
+        <td><?php echo strtoupper($this->escape($person->gender));?></td>
+        <td><?php echo $this->escape($person->birthdate);?></td>
+        <td><?php echo $this->escape($person->birthdate_estimate);?></td>
+        <td><?php 
+        $status = $this->escape($person->alive);
+        if($status==1){ echo "Yes";} else {echo "No"; }
+        ?>
+        
+        </td>
+        <td><?php echo $this->escape($person->date_created);?></td>
+        <td><?php echo $this->escape($person->created_by);?></td>
+        <td>
+            
+            <a href="<?php echo $this->url(array('controller'=>'index',
+                'action'=>'edit', 'person_id'=>$person->person_id));?>">Edit</a>
+            
+            <a href="<?php echo $this->url(array('controller'=>'index',
+                'action'=>'delete', 'person_id'=>$person->person_id));?>">Delete</a>
+            
+        </td>
+    </tr>
+            <?php endforeach; ?>
+</table>
