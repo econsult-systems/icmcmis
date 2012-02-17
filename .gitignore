@@ -1,2 +1,2 @@
-nbproject/*
-application/config/application.ini
+nbproject/
+application/configs/application.ini
