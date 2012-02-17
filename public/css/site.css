@@ -1,8 +1,14 @@
 body,html {
     margin: 0 5px;
     font-family: Verdana,sans-serif;
+    background-image:url('../images/bg.gif');
+    background-size:100% 70%;
+    background-repeat:no-repeat;
 }
 
+#footer{border-top:1px #abc solid;background:#d2e4ed url(../images/footer.gif) repeat-x 0 0;color:#555;padding:5px 0;}
+.copyright, #footer{clear:left;}
+.copyright, .tabs a, .nav a, .footer a, .logo, .bottom-nav a{text-align:center;}
 h1 {
     font-size: 1.4em;
     color: #008000;
